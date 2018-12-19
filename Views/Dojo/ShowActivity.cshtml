@@ -1,0 +1,70 @@
+@using DojoActivity.Models
+@model ActivityModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="~/css/dashboard.css">
+    <title>@ViewBag.Title
+        @{
+            ViewBag.Title = "Activity Details";
+        }
+    </title>
+    <style>
+        .guests, .map {
+            display: inline-block;
+        }
+        .guests, .map {
+            margin-top: 20px;
+            vertical-align: top;
+        }
+        .map {
+            margin-left: 400px;
+        }
+        .description{
+            outline:1px solid black;
+            margin: 0 ;
+            width: 300px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 style="text-align: center;"><strong>Dojo Activity Center</strong></h1>
+            <p style="text-align: center;"><a class="btn btn-success" href="/dashboard">Dashboard</a> <a class="btn btn-danger" href="/logout">Logout</a></p><hr>
+            <h1 style="text-align: center;"><strong style="color:red;">@ViewBag.show.Title</strong></h1>        
+            <h3>Activity Coordinator: <strong>@ViewBag.show.Coordinator.FirstName @ViewBag.show.Coordinator.LastName</strong></h3>
+
+<!-- need to grab user who created the activity and display his name and give a delete button function. -->
+
+
+        </div>
+        <hr>
+            <h3 style="color: green;">Activity description:</h3>
+        <div class="description">
+            <p>=> @ViewBag.show.Description</p>
+        </div>
+        <div class="guests">
+            <h4>Participants:</h4>
+            @{
+                <ul>
+                    @foreach (var g in @ViewBag.show.participant)
+                    {
+                        <li style="color: red;">@g.User.FirstName @g.User.LastName</li>
+                    }
+                </ul>
+            }
+<!-- need to display Join/Leave buttons as on the dashboard. -->
+        </div>
+    </div>
+</body>
+</html>
